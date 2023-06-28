@@ -58,13 +58,24 @@ mount /dev/sda1 /mnt/boot/efi
 # Configuração do espelho dos repositórios (opcional, pode ser ajustado conforme a distribuição Linux desejada)
 rm /etc/pacman.d/mirrorlist
 
-echo "ParallelDownloads = 5" > /etc/pacman.conf
+echo "ParallelDownloads = 5" >> /etc/pacman.conf
 
-echo "[multilib]" > /etc/pacman.conf
+echo "[multilib]" >> /etc/pacman.conf
 
-echo "Include = /etc/pacman.d/mirrorlist" > /etc/pacman.conf
+echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
-echo "Server = https://mirror.ufscar.br/archlinux/$repo/os/$arch " > /etc/pacman.d/mirrorlist
+#Mirrors
+
+echo "Server = https://mirror.ufscar.br/archlinux/$repo/os/$arch" >> /etc/pacman.d/mirrorlist
+
+echo "Server = https://www.caco.ic.unicamp.br/archlinux/$repo/os/$arch " >> /etc/pacman.d/mirrorlist
+
+echo "Server = https://mirror.adectra.com/archlinux/$repo/os/$arch  " >> /etc/pacman.d/mirrorlist
+
+echo "Server = https://mirror.arizona.edu/archlinux/$repo/os/$arch " >> /etc/pacman.d/mirrorlist
+
+
+
 
 pacman-key --init
 
@@ -82,7 +93,7 @@ cp -r /etc/pacman.conf /mnt/etc/pacman.conf
 
 cp -r /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist
 
-cp -r archscript2.sh /mnt/
+cp -r arch2.sh /mnt/
 
 
 # Chroot para a nova raiz
@@ -91,4 +102,4 @@ arch-chroot /mnt
 # Agora você está no ambiente chroot da nova instalação. Você pode executar comandos adicionais se necessário.
 
 # Finalização da execução do script
-echo "Instalação concluída. Reinicie o sistema e remova o dispositivo de instalação."
+echo "Instalação concluída."
